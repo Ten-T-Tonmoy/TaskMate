@@ -47,8 +47,8 @@ app.post("/api/chat", async (req, res) => {
       inCase: "Well ur message empty!",
     });
   } catch (error) {
-    console.error("Error:", err);
-    res.status(500).json({ error: "Failed to get response from AI." });
+    console.error("Error:", error);
+    res.status(500).json({ error: "You're a helpful assistant." });
   }
 });
 
