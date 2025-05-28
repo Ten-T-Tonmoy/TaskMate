@@ -5,9 +5,12 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Typewriter from "typewriter-effect";
 import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/github-dark.css";
 
 const Home = () => {
   const [req, setReq] = useState("");
+  const [userMsg, setUserMsg] = useState([""]);
   const [res, setRes] = useState("");
   const [thinking, setThinking] = useState(false);
   const [typed, setTyped] = useState("");
@@ -39,16 +42,12 @@ const Home = () => {
     setThinking(false);
   };
   return (
-    <div className="flex w-full flex-col justify-center">
-      Home
+    <div className="flex py-2 w-full flex-col justify-center">
       <Link to="/">
         <div className="text-center">
-          <button className="btn btn-primary">
-            click to check route and hot toast
-          </button>
+          <button className="btn btn-primary">Go Back to DevCheck</button>
         </div>
       </Link>
-      <FadeIn />
       <div className="w-full flex justify-center">
         <SlideIn />
       </div>
@@ -70,33 +69,18 @@ const Home = () => {
         </div>
       )}
       <div
-        className=" bg-stone-700 text-start
+        className=" bg-gray-950 text-start
       rounded-md p-4 mx-4 my-2 "
       >
-        <h1 className="text-white  text-[1.4rem]">Result :</h1>
+        <h1 className="text-white  text-[1.2rem] py-2">Result :</h1>
         <div className="">
           <ReactMarkdown
+            rehypePlugins={[rehypeHighlight]}
             components={{
-              h1: ({ node, ...props }) => (
-                <h1 className="text-3xl font-bold my-4" {...props} />
-              ),
-              h2: ({ node, ...props }) => (
-                <h2 className="text-2xl font-semibold my-3" {...props} />
-              ),
-              p: ({ node, ...props }) => (
-                <p className="text-base leading-7 my-2" {...props} />
-              ),
-              ul: ({ node, ...props }) => (
-                <ul className="list-disc pl-6 my-2" {...props} />
-              ),
-              ol: ({ node, ...props }) => (
-                <ol className="list-decimal pl-6 my-2" {...props} />
-              ),
-              li: ({ node, ...props }) => <li className="mb-1" {...props} />,
               code: ({ node, inline, className, children, ...props }) =>
                 inline ? (
                   <code
-                    className="bg-gray-800 text-white px-1 py-0.5 rounded text-sm"
+                    className="bg-gray-800 text-white px-1 py-0.5 my-1 rounded text-sm"
                     {...props}
                   >
                     {children}
@@ -109,6 +93,24 @@ const Home = () => {
                     <code className="text-sm">{children}</code>
                   </pre>
                 ),
+
+              h1: ({ node, ...props }) => (
+                <h1 className="text-3xl font-bold my-4 p-1" {...props} />
+              ),
+              h2: ({ node, ...props }) => (
+                <h2 className="text-2xl font-semibold my-3" {...props} />
+              ),
+              p: ({ node, ...props }) => (
+                <p className="text-base leading-7 my-3" {...props} />
+              ),
+              ul: ({ node, ...props }) => (
+                <ul className="list-disc pl-6 my-2" {...props} />
+              ),
+              ol: ({ node, ...props }) => (
+                <ol className="list-decimal pl-6 my-2" {...props} />
+              ),
+              li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+
               blockquote: ({ node, ...props }) => (
                 <blockquote
                   className="border-l-4 border-gray-500 pl-4 italic text-gray-400"
@@ -135,18 +137,6 @@ const Home = () => {
 
 export default Home;
 
-const FadeIn = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 4 }}
-    >
-      <h1>Simple fade in Framer-Motion</h1>
-    </motion.div>
-  );
-};
-
 const SlideIn = () => {
   return (
     <motion.div
@@ -159,7 +149,7 @@ const SlideIn = () => {
         duration: 20,
       }}
     >
-      <p>Sliding in from the left!</p>
+      <p className="py-2">Type shii and get Started! </p>
     </motion.div>
   );
 };
