@@ -24,13 +24,14 @@ const Input = () => {
     }
   };
   return (
-    <div className="fixed min-h-[25vh] bottom-0 left-0 p-4 pt-0 w-full flex  justify-center">
+    <div className="fixed min-h-[20vh] bottom-0 left-0 p-4 pt-0 w-full flex  justify-center">
       <div className="flex flex-col ">
         <textarea
           ref={textAreaRef}
           onInput={handleTyping}
-          className=" resize-none focus:outline-none
-      bg-stone-800 active:outline-amber-400 max-h-[30vh] scroll-auto md:w-[70vw]  shadow-md rounded-t-xl w-[85vw] p-4"
+          className=" resize-none focus:outline-none h-[10vh]
+      bg-stone-800 active:outline-amber-400 max-h-[30vh] scroll-auto md:w-[70vw] 
+       shadow-md rounded-t-xl w-[85vw] p-4"
           placeholder="Ask anything . . ."
           name=""
           id=""

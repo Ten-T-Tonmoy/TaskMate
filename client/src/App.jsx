@@ -9,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
-    <div>
+    <>
       <Toaster position="top-center" reverseOrder={false} />
 
       <Routes>
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/auth" element={<Auth />} />
         <Route path="/mate" element={<Mate />} />
       </Routes>
-    </div>
+    </>
   );
 };
 

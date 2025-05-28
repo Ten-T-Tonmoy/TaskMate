@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { chats } from "../../utils/DummyDB";
 import TopBar from "./TopBar";
 import Input from "./Input";
 import AiBubble from "./AiBubble";
+import "../../index.css";
+import TypeResponse from "./TypeResponse";
 
 /**
  * const chats = [
@@ -20,20 +22,26 @@ import AiBubble from "./AiBubble";
 
 const Mate = () => {
   const [texts, setTexts] = useState(chats);
+  const containerRef = useRef(null);
 
   return (
-    <div className="h-[100vh] overflow-hidden bg-stone-900">
+    <div className="h-[100vh] w-[100vw]   overflow-hidden bg-stone-900">
       <TopBar />
+      {/**attach ref to scrollable shit broh */}
       <div
-        className="absolute w-[full] top-[50px] px-[7.5vw]
-       md:px-[15vw] bottom-[25vh]  overflow-y-scroll"
+        ref={containerRef}
+        className="absolute w-full top-[50px] px-[7.5vw]
+       md:px-[15vw] bottom-[20vh]   overflow-y-scroll overflow-x-hidden"
       >
         {texts.map((el, key) =>
-          el.messages.map((ob, ke) => (
-            <div className="" key={ke}>
+          el.messages.map((ob, idx) => (
+            <div className="w-[100%]" key={idx}>
               <UserBubble msg={ob.user} />
-
-              <AiBubble msg={ob.response} />
+              {key === texts.length - 1 && idx === el.messages.length - 1 ? (
+                <TypeResponse msg={ob.response} containerRef={containerRef} />
+              ) : (
+                <AiBubble msg={ob.response} />
+              )}
             </div>
           ))
         )}
@@ -48,7 +56,7 @@ export default Mate;
 const UserBubble = ({ msg }) => {
   return (
     <div
-      className="p-2 px-4 my-8 max-w-[80%]  ml-auto
+      className="p-2 px-4 my-6 max-w-[80%]  ml-auto
   rounded-xl bg-stone-800 w-fit right-0"
     >
       {msg}
