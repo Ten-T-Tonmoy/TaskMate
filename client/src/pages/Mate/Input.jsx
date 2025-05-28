@@ -30,17 +30,26 @@ const Input = () => {
           ref={textAreaRef}
           onInput={handleTyping}
           className=" resize-none focus:outline-none
-      bg-stone-800 active:outline-amber-400 max-h-[30vh] scroll-auto  shadow-md rounded-t-xl w-[85vw] p-4"
+      bg-stone-800 active:outline-amber-400 max-h-[30vh] scroll-auto md:w-[70vw]  shadow-md rounded-t-xl w-[85vw] p-4"
           placeholder="Ask anything . . ."
           name=""
           id=""
         ></textarea>
-        <div className="shadow-md flex justify-between pb-2 px-4  pt-1 bg-stone-800 rounded-b-xl w-[85vw]">
+        <div
+          className="shadow-md flex justify-between pb-2 px-4  pt-1
+         bg-stone-800 rounded-b-xl md:w-[70vw] w-[85vw]"
+        >
           <div className="flex gap-2 ">
             <GoPlus className="cursor-pointer text-[1.6rem] hover:bg-white rounded-full hover:text-black" />
-            <RiVoiceprintFill className="cursor-pointer p-1 text-[1.7rem] hover:bg-white rounded-full hover:text-black" />
+            <RiVoiceprintFill
+              className="cursor-pointer p-1 text-[1.7rem] hover:bg-white
+             rounded-full hover:text-black"
+            />
           </div>
-          <FaArrowUp className="bg-white cursor-pointer rounded-full p-1 text-stone-800 text-[1.6rem] hover:opacity-80" />
+          <FaArrowUp
+            className="bg-white cursor-pointer rounded-full
+           p-[6px] text-stone-800 text-[2rem] hover:opacity-80"
+          />
         </div>
       </div>
     </div>

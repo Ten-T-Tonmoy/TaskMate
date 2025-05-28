@@ -1,48 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import { chats } from "../../utils/DummyDB";
 import TopBar from "./TopBar";
 import Input from "./Input";
+import AiBubble from "./AiBubble";
+
+/**
+ * const chats = [
+  {
+    chatTitle: "",
+    date: "",
+    messages: [
+      { user: "", response: "" },
+      { user: "", response: "" },
+    ],
+  },
+]
+ */
 
 const Mate = () => {
-  const code = `import React from "react";
-import TopBar from "./TopBar";
-import Input from "./Input";
+  const [texts, setTexts] = useState(chats);
 
-const Mate = () => {
-  return (
-    <div className="h-screen bg-stone-900 relative">
-      {/* TopBar */}
-      <TopBar />
-
-      {/* Scrollable message area */}
-      <div className="absolute top-[64px] bottom-[64px] overflow-y-auto w-full px-4 py-2 space-y-2">
-        {Array(30).fill().map((_, i) => (
-          <div key={i} className="text-white">hiiiiii {i + 1}</div>
-        ))}
-      </div>
-
-      {/* Input fixed at bottom */}
-      <div className="fixed bottom-0 w-full bg-stone-800 px-4 py-2">
-        <Input />
-      </div>
-    </div>
-  );
-};
-
-export default Mate;
-`;
   return (
     <div className="h-[100vh] overflow-hidden bg-stone-900">
       <TopBar />
-      <div className="absolute w-[full] top-[50px] px-[7.5vw] bottom-[25vh]  overflow-y-scroll">
-        {Array(30)
-          .fill()
-          .map((_, i) => (
-            <div key={i} className="text-white text-center">
-              hiiiiii {i + 1}
-            </div>
-          ))}
+      <div
+        className="absolute w-[full] top-[50px] px-[7.5vw]
+       md:px-[15vw] bottom-[25vh]  overflow-y-scroll"
+      >
+        {texts.map((el, key) =>
+          el.messages.map((ob, ke) => (
+            <div className="" key={ke}>
+              <UserBubble msg={ob.user} />
 
-        {code}
+              <AiBubble msg={ob.response} />
+            </div>
+          ))
+        )}
       </div>
       <Input />
     </div>
@@ -50,3 +44,14 @@ export default Mate;
 };
 
 export default Mate;
+
+const UserBubble = ({ msg }) => {
+  return (
+    <div
+      className="p-2 px-4 my-8 max-w-[80%]  ml-auto
+  rounded-xl bg-stone-800 w-fit right-0"
+    >
+      {msg}
+    </div>
+  );
+};
